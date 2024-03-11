@@ -12,8 +12,8 @@ public class GroupQuestionSubmit {
   private Long id;
   private Long eventid;
   private Long groupid;
-  private Long userid;
   private Long questionid;
+  private Long userid;
   private LocalDateTime submittime;
   private Double runtimebymsec;
   private String status;
@@ -27,11 +27,11 @@ public class GroupQuestionSubmit {
     
   }
 
-  public GroupQuestionSubmit(Long eventid, Long groupid,Long userid, Long questionid,LocalDateTime submittime, Double runtimebymsec,String status, LocalDateTime createddate, Integer createdby, LocalDateTime updateddate, Integer updatedby) {
+  public GroupQuestionSubmit(Long eventid, Long groupid, Long questionid, Long userid, LocalDateTime submittime, Double runtimebymsec,String status, LocalDateTime createddate, Integer createdby, LocalDateTime updateddate, Integer updatedby) {
     this.eventid = eventid;
     this.groupid = groupid;
-    this.userid = userid;
     this.questionid = questionid;
+    this.userid = userid;
     this.submittime = submittime;
     this.runtimebymsec = runtimebymsec;
     this.status = status;
