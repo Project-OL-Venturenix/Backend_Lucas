@@ -1,6 +1,8 @@
 package com.venturenix.cmc.controllers;
 
 import java.util.List;
+
+import com.venturenix.cmc.payload.response.UserScoreDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,4 +39,10 @@ public interface UserScoreOperation {
 
   @DeleteMapping("/userscores/{id}")
   ResponseEntity<?> deleteUserScore(@PathVariable long id);
+
+  // return ResponseEntity.ok(result);
+  // }
+
+  @GetMapping("/usertestcases/eventid/{eventid}")
+  ResponseEntity<UserScoreDTO> getUserTestCaseByEventId(@PathVariable String eventid);
 }

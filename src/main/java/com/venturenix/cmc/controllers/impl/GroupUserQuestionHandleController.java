@@ -51,41 +51,20 @@ public class GroupUserQuestionHandleController
   GroupUserQuestionHandleRepository groupuserquestionhandleRepository;
 
   public ResponseEntity<?> addGroupUserQuestionHandle(
-      GroupUserQuestionHandleRequest groupuserquestionhandleRequest) {
-    Long eventid = groupuserquestionhandleRequest.getEventid();
-    Long groupid = groupuserquestionhandleRequest.getGroupid();
-    Long questionid = groupuserquestionhandleRequest.getQuestionid();
-    Long userID = groupuserquestionhandleRequest.getUserlist();
-    Optional<GroupUserQuestionHandle> checkData =
-        groupuserquestionhandleRepository
-            .findDistinctByEventidAndGroupidAndQuestionid(eventid, groupid,
-                questionid);
-    // keep userList Distinct
-    Optional<List<GroupUserQuestionHandle>> checkUserList =
-        groupuserquestionhandleRepository.findByUserid(userID);
-    if (checkUserList.isPresent()) {
-      groupuserquestionhandleRepository.deleteAll(checkUserList.get());
-    }
-    if (checkData.isPresent()) {
-      checkData.get().setUserlist(groupuserquestionhandleRequest.getUserlist());
-      groupuserquestionhandleRepository.save(checkData.get());
-    } else {
-      GroupUserQuestionHandle groupuserquestionhandle =
-          new GroupUserQuestionHandle(
-              groupuserquestionhandleRequest.getEventid(),
-              groupuserquestionhandleRequest.getGroupid(),
-              groupuserquestionhandleRequest.getUserlist(),
-              groupuserquestionhandleRequest.getQuestionid(),
-              groupuserquestionhandleRequest.getStatus(),
-              java.time.LocalDateTime.now(),
-              groupuserquestionhandleRequest.getCreatedby(),
-              java.time.LocalDateTime.now(),
-              groupuserquestionhandleRequest.getUpdatedby());
-      groupuserquestionhandleRepository.save(groupuserquestionhandle);
-    }
-
+          GroupUserQuestionHandleRequest groupuserquestionhandleRequest) {
+    GroupUserQuestionHandle groupuserquestionhandle =
+            new GroupUserQuestionHandle(groupuserquestionhandleRequest.getEventid(),
+                    groupuserquestionhandleRequest.getGroupid(),
+                    groupuserquestionhandleRequest.getUserlist(),
+                    groupuserquestionhandleRequest.getQuestionid(),
+                    groupuserquestionhandleRequest.getStatus(),
+                    java.time.LocalDateTime.now(),
+                    groupuserquestionhandleRequest.getCreatedby(),
+                    java.time.LocalDateTime.now(),
+                    groupuserquestionhandleRequest.getUpdatedby());
+    groupuserquestionhandleRepository.save(groupuserquestionhandle);
     return ResponseEntity
-        .ok(new MessageResponse("Add GroupUserQuestionHandle successfully!"));
+            .ok(new MessageResponse("Add GroupUserQuestionHandle successfully!"));
 
   }
 

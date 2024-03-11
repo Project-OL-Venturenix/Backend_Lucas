@@ -11,6 +11,7 @@ import java.util.List;
 public interface UserScoreRepository extends JpaRepository<UserScore, Long> {
 
     Optional<UserScore> findById(Long id);
+    List<UserScore> findByEventid(Long id);
 
     List<UserScore> findAll();
     
